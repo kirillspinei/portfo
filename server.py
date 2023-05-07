@@ -1,7 +1,7 @@
 from flask import Flask, render_template, url_for, request, redirect
 import csv
+
 app = Flask(__name__)
-print(__name__)
 
 @app.route('/')
 def my_home():
@@ -9,7 +9,7 @@ def my_home():
 
 @app.route('/<string:page_name>')
 def html_page(page_name):
-    return render_template(page_name)
+    return render_template(page_name + '.html')
 
 def write_to_csv(data):
     with open('database.csv', mode='a', newline='') as database2:
@@ -30,3 +30,6 @@ def submit_form():
             return 'Не сохранено в базу данных'
     else:
         return 'Что-то пошло не так, попробуйте еще раз'
+
+if __name__ == "__main__":
+    app.run()
